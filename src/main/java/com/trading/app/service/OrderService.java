@@ -1,10 +1,15 @@
 package com.trading.app.service;
 
 import com.trading.app.entity.Order;
-import org.bson.types.ObjectId;
+
+import java.util.List;
 
 public interface OrderService {
-    ObjectId placeNewOrder(Order order);
+    Order placeNewOrder(Order order);
 
     void cancelOrder(Order order);
+
+    List<Order> getAllCurrentOrders();
+
+    Order updateOrder(Order order);
 }

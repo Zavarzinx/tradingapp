@@ -3,8 +3,9 @@ package com.trading.app.service.imp;
 import com.trading.app.entity.Order;
 import com.trading.app.repository.OrderRepository;
 import com.trading.app.service.OrderService;
-import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class OrderServiceImp implements OrderService {
@@ -16,12 +17,22 @@ public class OrderServiceImp implements OrderService {
     }
 
     @Override
-    public ObjectId placeNewOrder(Order order) {
-      return orderRepository.save(order).getId();
+    public Order placeNewOrder(Order order) {
+      return orderRepository.save(order);
     }
 
     @Override
     public void cancelOrder(Order order) {
+        orderRepository.delete(order);
+    }
 
+    @Override
+    public List<Order> getAllCurrentOrders() {
+       return orderRepository.findAll();
+    }
+
+    @Override
+    public Order updateOrder(Order order) {
+       return orderRepository.save(order);
     }
 }
