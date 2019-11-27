@@ -25,7 +25,7 @@ public class OrderController {
        return new ResponseEntity<>(orderService.placeNewOrder(order), HttpStatus.CREATED);
     }
 
-    @PostMapping("/cancel")
+    @DeleteMapping("/cancel")
     public ResponseEntity<Void> cancelOrder(@RequestBody Order order) {
         orderService.cancelOrder(order);
        return ResponseEntity.noContent().build();

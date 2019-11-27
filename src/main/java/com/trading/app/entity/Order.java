@@ -14,7 +14,7 @@ public class Order {
     
     private int orderNumber;
 
-    private String currencyFrom;
+    private Currency currencyFrom;
 
-    private String currencyTo;
+    private Currency currencyTo;
 }
