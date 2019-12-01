@@ -1,14 +1,15 @@
 package com.trading.app.entity;
 
-import org.bson.types.ObjectId;
+import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
 
-@Document
+@Data
+@Document("Currency")
 public class Currency {
     @Id
-    private ObjectId id;
+    private String id;
 
     private String name;
 
