@@ -9,3 +9,9 @@ spring:
     password: qwerty123z
   jpa:
     generate-ddl: true
+jwt:
+  token:
+    secret: secret
+    expired: 1800000
+server:
+  port: 8088

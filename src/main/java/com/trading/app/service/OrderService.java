@@ -12,4 +12,10 @@ public interface OrderService {
     List<Order> getAllCurrentOrders();
 
     Order updateOrder(Order order);
+
+    Order fillOrder(Order order, long amount);
+
+    List<Order> getAllOrders();
+
+    List<Order> getAllFullfillOrders();
 }

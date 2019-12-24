@@ -10,10 +10,21 @@ import javax.persistence.Id;
 public class Order {
     @Id
     private String id;
-    
-    private int orderNumber;
+
+    private long toSell;
+
+    private long toPay;
+
+    private boolean isDone = false;
 
     private Currency currencyFrom;
 
     private Currency currencyTo;
+
+    public Order( long toSell, Currency currencyFrom, Currency currencyTo) {
+        this.toSell = toSell;
+        this.toPay = toSell * currencyTo.getExchangeRate().getRateToCurrencies().get(currencyTo);
+        this.currencyFrom = currencyFrom;
+        this.currencyTo = currencyTo;
+    }
 }

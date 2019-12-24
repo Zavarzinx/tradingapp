@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-@Document("wallet")
+@Document(collection = "wallets")
 public class Wallet {
 
     @Id
@@ -27,6 +27,10 @@ public class Wallet {
     public void addAmount(int amount, Currency currency) {
       int newAmount = currencyAmount.get(currency) + amount;
       currencyAmount.put(currency, newAmount);
+    }
+
+    public void removeCurrency(Currency currency) {
+        currencies.remove(currency);
     }
 
 }

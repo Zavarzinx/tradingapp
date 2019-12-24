@@ -18,6 +18,8 @@ public class OrderServiceImp implements OrderService {
 
     @Override
     public Order placeNewOrder(Order order) {
+       long exchangeRate = order.getCurrencyFrom().getExchangeRate().getRateToCurrencies().get(order.getCurrencyTo());
+       order.setToPay(order.getToSell() * exchangeRate);
       return orderRepository.save(order);
     }
 
@@ -28,11 +30,30 @@ public class OrderServiceImp implements OrderService {
 
     @Override
     public List<Order> getAllCurrentOrders() {
-       return orderRepository.findAll();
+       return orderRepository.findOrdersByDoneFalse();
     }
 
     @Override
     public Order updateOrder(Order order) {
        return orderRepository.save(order);
+    }
+
+    @Override
+    public Order fillOrder(Order order, long amount) {
+       if (order.getToPay() != amount) {
+           throw new IllegalArgumentException("you need to pay correct amount to fullfill this order");
+       }
+       order.setDone(true);
+       return order;
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
+    }
+
+    @Override
+    public List<Order> getAllFullfillOrders() {
+       return orderRepository.findOrdersByDoneTrue();
     }
 }
